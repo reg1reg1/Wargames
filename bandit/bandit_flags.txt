@@ -1,0 +1,6 @@
+**********FLAGS******************
+Bandit0:boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+Bandit1:CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+Bandit2:UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+Bandit3:pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+Bandit4:xUmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
