@@ -16,7 +16,6 @@ These are the easiest problems of the wargame prepping us for the reverse engine
 	<li>
 		<h3>Bandit2</h3>
 		There are spaces in the filename. Easier than the last one, use cat "spaces in the filename".
-		
 	</li>
 	<li><h3>Bandit3</h3>
 		The file is hidden, and seeing the hidden files via 
@@ -56,16 +55,16 @@ These are the easiest problems of the wargame prepping us for the reverse engine
 		</h3>
 		We can use the find command to locate the necessary group and username owner of the file.
 		<pre>
-			find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+			find / -user bandit7 -group bandit6 -size 33c 2&gt/dev/null
 		</pre>
 	</li>
 	<li>
 		<h3>
 			Bandit7
 		</h3>
-		No find command required, since it is already given to us. We can use awk, or sed to search for strings within the fiel, but in this case simple grep can do the job.
+		No find command required, since it is already given to us. We can use awk, or sed to search for strings within the fiel, but in this case simple grep can do the job. 
 		<pre>
-			cat data.txt | grep ^millionth
+			sed -n '10,$ { /millionth/ { =; p; } }' data.txt
 		</pre>
 	</li>
 </ol>
