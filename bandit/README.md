@@ -1,6 +1,6 @@
 # Bandit
 These are the easiest problems of the wargame prepping us for the reverse engineering and tougher challenges that lie ahead. We have a series of 34 machines to ssh into, and each machine holds the password to the next machine. It is highly recommended to solve the challenges on your own before proceeding to look for the solution. The solutions provided are for educational purposes only. The flags are in the file , bandit_flags.txt
-<ol>
+<ul>
 	<li>
 		<h3>Bandit0</h3>
 		Simply cat of the file, which reveals the flag. 
@@ -66,4 +66,20 @@ These are the easiest problems of the wargame prepping us for the reverse engine
 			sed -n '10,$ { /millionth/ { =; p; } }' data.txt
 		</pre>
 	</li>
-</ol>
+	<li>
+		<h3>
+			Bandit8
+		</h3>
+		We have to find a non unique line. We can use <i>uniq</i> command, but it only works on adjacent lines so we need to sort. Hence the following chain.
+		<pre>
+			sort data.txt | uniq -u
+		</pre>
+	</li>
+	<li>
+		<h3>Bandit9</h3>
+		Find a human readable line within a file (ASCII Text), which begins with "==". Here we can use the <i>strings</i> command, followed by a grep.
+		<pre>
+			strings data.txt | grep ^==
+		</pre>
+	</li>
+</ul>
