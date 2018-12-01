@@ -1,5 +1,12 @@
 # Bandit
-These are the easiest problems of the wargame prepping us for the reverse engineering and tougher challenges that lie ahead. We have a series of 34 machines to ssh into, and each machine holds the password to the next machine. It is highly recommended to solve the challenges on your own before proceeding to look for the solution. The solutions provided are for educational purposes only. The flags are in the file , bandit_flags.txt
+These are the easiest problems of the wargame prepping us for the reverse engineering and tougher challenges that lie ahead. We have a series of 34 machines to ssh into, and each machine holds the password to the next machine. It is highly recommended to solve the challenges on your own before proceeding to look for the solution. The solutions provided are for educational purposes only. The flags are in the file , bandit_flags.txt.
+
+Useful  Resources are(not exhaustive in any sense).
+<ul>
+	<li>
+		<a href="https://www.gnu.org/software/sed/manual/sed.html">SED Manual</a>
+	</li>
+</ul>
 <ul>
 	<li>
 		<h3>Bandit0</h3>
@@ -80,6 +87,13 @@ These are the easiest problems of the wargame prepping us for the reverse engine
 		Find a human readable line within a file (ASCII Text), which begins with "==". Here we can use the <i>strings</i> command, followed by a grep.
 		<pre>
 			strings data.txt | grep ^==
+		</pre>
+	</li>
+	<li>
+		<h3>Bandit10</h3>
+		Simple base64 decode of the data present in data.txt
+		<pre>
+			base64 -d data.txt 
 		</pre>
 	</li>
 </ul>
