@@ -99,8 +99,10 @@ Useful  Resources are(not exhaustive in any sense).
 	<li>
 		<h3>Bandit11</h3>
 		Using sed, which is a beast of a tool. One may use <i>tr</i> tool as well
+
 		```
 sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${beta::$rot}/" data.txt
 		```
+		
 	</li>
 </ul>
