@@ -29,7 +29,6 @@ These are the easiest problems of the wargame prepping us for the reverse engine
 		Familiarity with the usage of the <b>find</b> command in UNIX.
 		More information can be found on the man page of the find command.
 		which can be used to even chain executing commands on the results of the find like below
-
 		The file command gives details about the files in the directory. So? We can pipe the results of the find command to the file command and voila.
 		<pre>
 			man file
