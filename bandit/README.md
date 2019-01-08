@@ -108,9 +108,12 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 	<li>
 		The challenge basically involves uncompressing a file which has been compressed multiple times, using different forms of compression. One could write a program to uncompress the file automatically based on the compression types. 
 		The whole idea is to identify the file compression type , and then uncompress accordingly.
-		Since it is in the hexdump representation of a file, the first step would be to get the file back from the hex representation.
+		Since it is in the hexdump representation of a file, the first step would be to get the file back from the hex representation.</br>
 		<b>Steps</b>
 		<ul>
+		<li>
+		Create a copy of the file and move it to a created directory in /tmp. This is because the directory in which the file is located in does not have write access for the user. 
+		</li>
 		<li>
 			<p> xxd is an utility that helps reverse and generate hexdumps of files.</p>
 			<pre>
