@@ -99,13 +99,11 @@ base64 -d data.txt
 	<li>
 		<h3>Bandit11</h3>
 		Using sed, which is a beast of a tool. One may use <i>tr</i> tool as well
-
 		```
 sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${beta::$rot}/" data.txt
 		```
 		What sed is basically a stream editor
 		First of all there are 2 stream editor  expressions in place.
-		
 	</li>
 	<li>
 		The challenge basically involves uncompressing a file which has been compressed multiple times, using different forms of compression. One could write a program to uncompress the file automatically based on the compression types. 
