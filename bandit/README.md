@@ -93,7 +93,7 @@ Useful  Resources are(not exhaustive in any sense).
 		<h3>Bandit10</h3>
 		Simple base64 decode of the data present in data.txt
 		<pre>
-			base64 -d data.txt 
+base64 -d data.txt 
 		</pre>
 	</li>
 	<li>
@@ -103,6 +103,34 @@ Useful  Resources are(not exhaustive in any sense).
 		```
 sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${beta::$rot}/" data.txt
 		```
+		What sed is basically a stream editor
+		First of all there are 2 stream editor  expressions in place.
 		
+	</li>
+	<li>
+		The challenge basically involves uncompressing a file which has been compressed multiple times, using different forms of compression. One could write a program to uncompress the file automatically based on the compression types. 
+		The whole idea is to identify the file compression type , and then uncompress accordingly.
+		Since it is in the hexdump representation of a file, the first step would be to get the file back from the hex representation.
+		<b>Steps</b>
+		<ul>
+		<li>
+			<p> xxd is an utility that helps reverse and generate hexdumps of files.</p>
+			<pre>
+			xxd -revert data &gt datahex
+			</pre>
+		</li>
+		<li>
+		These are the sequence of commands that were performed to uncompress a file. Each one is preceded by checking the file type of the output using the <i>file</i> command.
+		<pre>
+        zcat revhex > data_zcatted
+        bzip2 -d data_zcatted
+        zcat data_zcatted.out > data_zcatted_again
+        tar -xvf data_zcatted_again
+        tar -xvf data5.bin
+        bzip2 -d data6.bin
+        tar -xvf data6.bin.out
+        zcat data8.bin > data8_zcatted
+		</li>
+		</ul>
 	</li>
 </ul>

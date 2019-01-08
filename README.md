@@ -8,5 +8,6 @@ The list of attempted class of problems are as follows.
 	<li>
 		<h1>Bandit</h1>
 		Recruit level challenges solved for the familiarity and good grasp over the UNIX shell.
+		
 	</li>
 </ol>
