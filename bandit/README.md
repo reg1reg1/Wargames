@@ -6,6 +6,12 @@ Useful  Resources are(not exhaustive in any sense).
 	<li>
 		<a href="https://www.gnu.org/software/sed/manual/sed.html">SED Manual</a>
 	</li>
+	<li>
+		<a href="https://linuxize.com/post/how-to-use-linux-screen/#detach-from-linux-screen-session">Using screen, a terminal multiplexer</a>
+	</li>
+	<li>
+		<a href="https://linux.die.net/man/">Linux Man pages</a>
+	</li>
 </ul>
 <ul>
 	<li>
@@ -154,9 +160,49 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 		<pre>
 		openssl s_client -ign_eof -connect localhost:30001
 		</pre>
-		The flag <i>"ign_eof"</i> is used to 
+		The flag <i>"ign_eof"</i> is used to allow for end of line to be entered to terminate the condition. 
 	</li>
 	<li>
 		<h3>Bandit16</h3>
+		Using nmap we can find out a range of open ports that support ssh
+		<pre>
+		nmap  -A -T4 -p 31000-32000 localhost
+		</pre>
+		After we get to know the port on which ssl is running, the tmp directory gets the sshkey.private being returned by the server, which is the private key of user <i>bandit17</i>
+		The server will be running on some port which is not an echo server. Use openssl to connect to this ssh server in the eof mode as described in Bandit15. On entering the correct password, the server will reply back with an RSA private key for bandit user 17.
+		<p>
+		Copy the contents, create a file in the <i>tmp</i> directory.
+		<b>Note: Change the permissions of the newly created file to be restrictive of read and write privilleges to only the current user or the ssh will reject the file as being too "unprotected". I set the permission to file to <i>700</i>. 
+		</p>
+	</li>
+	<li>
+		<h3>Bandit17</h3>
+		Simple diff command of the 2 files will pop out the answer.
+	</li>
+	<li>
+		<h3>Bandit18</h3>
+		The machine logs you out as mentioned in the description due to changes in .bashrc which happens when user profile is loaded after a successful login. This can be overcome by chaining a command to ssh to be executed after successful login.
+		<pre>
+			ssh bandit18@localhost "cat readme"
+		</pre>
+	</li>
+	<li>
+		<h3>Bandit19</h3>
+		The knowledge of <i>setuid</i> and <i>getuid</i> is useful. The commands basically allows users to execute certain executables as other users or groups and the command is used to set the appropriate bit on  the executable. For next level, the executable will allow us to read the bandit20's pass. Anyone executing the executable will run it as if it were bandit20 user running the executable. 
+		<pre>
+		./&gtexecutable name&lt cat /etc/bandit_pass/bandit20
+		</pre>
+	</li>
+	<li>
+		<h3>Bandit20</h3>
+		<li>
+		 	Using the same principles as above, except setup a netcat background process or use 2 parallel terminals. However since parallel terminals will lead to 2 different sessions and we want the output back from a process, I used a terminal multiplexer, like <i>screen</i>.
+		 	Firstly we create a session using one ssh login. Then we setup a separate instance of screen, by using the tool <i>screen</i>. Once done, we setup a netcat listen as under.
+		 	<pre>
+nc -l -p 44444
+		 	</pre>
+		 	Detach from this screen by pressing <kbd>CTRL</kbd>+<kbd>a</kbd>,<kbd>d</kbd>
+		</li>
+	</li>
 	</li>
 	</ul>
