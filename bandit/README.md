@@ -124,39 +124,39 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 		<li>
 		These are the sequence of commands that were performed to uncompress a file. Each one is preceded by checking the file type of the output using the <i>file</i> command.
 		<pre>
-        zcat revhex > data_zcatted
+        zcat revhex &gt data_zcatted
         bzip2 -d data_zcatted
-        zcat data_zcatted.out > data_zcatted_again
+        zcat data_zcatted.out &gt data_zcatted_again
         tar -xvf data_zcatted_again
         tar -xvf data5.bin
         bzip2 -d data6.bin
         tar -xvf data6.bin.out
-        zcat data8.bin > data8_zcatted
-		</li>
-		</li>
-		<li>
-		<h3>Bandit13</h3>
-		Simple ssh using an already present and generated private RSA key for the next user.
-		<pre>
+        zcat data8.bin &gt data8_zcatted
+	</pre>
+	</li>
+	</ul>
+	</li>
+	<li>
+	<h3>Bandit13</h3>
+	Simple ssh using an already present and generated private RSA key for the next user.
+	<pre>
 		ssh -i sshkey.private bandit14@localhost
-		</pre>
-		</li>
-		<li>
+	</pre>
+	</li>
+	<li>
 		<h3>Bandit14</h3>
 		This was done by viewing the password of the users contained in the folder /etc/bandit_pass
 		for the current user and submitting it via telnet
-		</li>
-		<li>
+	</li>
+	<li>
 		<h3>Bandit15</h3>
 		The ssh version of the above challenge. The only challenge is to incorporate a new line character after the banner is sent by the server. 
 		<pre>
 		openssl s_client -ign_eof -connect localhost:30001
 		</pre>
 		The flag <i>"ign_eof"</i> is used to 
-		</li>
-		<li>
-		<h3>Bandit16</h3>
-		</li>
-		</ul>
 	</li>
-</ul>
+	<li>
+		<h3>Bandit16</h3>
+	</li>
+	</ul>
