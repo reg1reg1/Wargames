@@ -203,11 +203,11 @@ nc -l -p 44444
 		 	Detach from this screen by pressing <kbd>CTRL</kbd>+<kbd>a</kbd>,<kbd>d</kbd>.
 		 	Then start another screen, and run the executable to connect to the running netcat shell which will return the pass of user <i>bandit20</i> to the ssh connection.
 		 	<pre>
-		 	./suconnect &gtportnumber&lt 	
+		 	./suconnect &ltportnumber&gt 	
 		 	</pre>
 		 	Reattach to the netcat screen using
 		 	<pre>
-		 		screen -r &gtscreenid&lt
+		 		screen -r &ltscreenid&gt
 		 	</pre>
 		 	Doing this will give you the output on the screen which is pass of <i>bandit21</i>
 		</li>
