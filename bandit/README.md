@@ -99,9 +99,9 @@ base64 -d data.txt
 	<li>
 		<h3>Bandit11</h3>
 		Using sed, which is a beast of a tool. One may use <i>tr</i> tool as well
-		```
+		<pre>
 sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${beta::$rot}/" data.txt
-		```
+		</pre>
 		What sed is basically a stream editor
 		First of all there are 2 stream editor  expressions in place.
 	</li>
@@ -133,6 +133,7 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
         tar -xvf data6.bin.out
         zcat data8.bin > data8_zcatted
 		</li>
+		</li>
 		<li>
 		<h3>Bandit13</h3>
 		Simple ssh using an already present and generated private RSA key for the next user.
@@ -155,7 +156,6 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 		</li>
 		<li>
 		<h3>Bandit16</h3>
-		
 		</li>
 		</ul>
 	</li>
