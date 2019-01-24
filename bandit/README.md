@@ -172,7 +172,7 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 		The server will be running on some port which is not an echo server. Use openssl to connect to this ssh server in the eof mode as described in Bandit15. On entering the correct password, the server will reply back with an RSA private key for bandit user 17.
 		<p>
 		Copy the contents, create a file in the <i>tmp</i> directory.
-		<b>Note: Change the permissions of the newly created file to be restrictive of read and write privilleges to only the current user or the ssh will reject the file as being too "unprotected". I set the permission to file to <i>700</i>. 
+		<b>Note: Change the permissions of the newly created file to be restrictive of read and write privilleges to only the current user or the ssh will reject the file as being too "unprotected". I set the permission to file to <i>700</i>.</b> 
 		</p>
 	</li>
 	<li>
@@ -195,13 +195,21 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 	</li>
 	<li>
 		<h3>Bandit20</h3>
-		<li>
 		 	Using the same principles as above, except setup a netcat background process or use 2 parallel terminals. However since parallel terminals will lead to 2 different sessions and we want the output back from a process, I used a terminal multiplexer, like <i>screen</i>.
 		 	Firstly we create a session using one ssh login. Then we setup a separate instance of screen, by using the tool <i>screen</i>. Once done, we setup a netcat listen as under.
 		 	<pre>
 nc -l -p 44444
 		 	</pre>
-		 	Detach from this screen by pressing <kbd>CTRL</kbd>+<kbd>a</kbd>,<kbd>d</kbd>
+		 	Detach from this screen by pressing <kbd>CTRL</kbd>+<kbd>a</kbd>,<kbd>d</kbd>.
+		 	Then start another screen, and run the executable to connect to the running netcat shell which will return the pass of user <i>bandit20</i> to the ssh connection.
+		 	<pre>
+		 	./suconnect &gtportnumber&lt 	
+		 	</pre>
+		 	Reattach to the netcat screen using
+		 	<pre>
+		 		screen -r &gtscreenid&lt
+		 	</pre>
+		 	Doing this will give you the output on the screen which is pass of <i>bandit21</i>
 		</li>
 	</li>
 	</li>
