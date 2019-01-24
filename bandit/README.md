@@ -106,6 +106,7 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 		First of all there are 2 stream editor  expressions in place.
 	</li>
 	<li>
+		<h3>Bandit12</h3>
 		The challenge basically involves uncompressing a file which has been compressed multiple times, using different forms of compression. One could write a program to uncompress the file automatically based on the compression types. 
 		The whole idea is to identify the file compression type , and then uncompress accordingly.
 		Since it is in the hexdump representation of a file, the first step would be to get the file back from the hex representation.</br>
@@ -131,6 +132,30 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
         bzip2 -d data6.bin
         tar -xvf data6.bin.out
         zcat data8.bin > data8_zcatted
+		</li>
+		<li>
+		<h3>Bandit13</h3>
+		Simple ssh using an already present and generated private RSA key for the next user.
+		<pre>
+		ssh -i sshkey.private bandit14@localhost
+		</pre>
+		</li>
+		<li>
+		<h3>Bandit14</h3>
+		This was done by viewing the password of the users contained in the folder /etc/bandit_pass
+		for the current user and submitting it via telnet
+		</li>
+		<li>
+		<h3>Bandit15</h3>
+		The ssh version of the above challenge. The only challenge is to incorporate a new line character after the banner is sent by the server. 
+		<pre>
+		openssl s_client -ign_eof -connect localhost:30001
+		</pre>
+		The flag <i>"ign_eof"</i> is used to 
+		</li>
+		<li>
+		<h3>Bandit16</h3>
+		
 		</li>
 		</ul>
 	</li>
