@@ -215,7 +215,6 @@ nc -l -p 44444
 		<li>
 			<h3>Bandit21</h3>
 			Examining the cronjob we know it is run every minute and , simply we need to examine the script being executed and then we know the directory/filename of the stored password. 
-
 		</li>
 		<li>
 			<h3>Bandit22</h3>
@@ -240,7 +239,6 @@ cat /etc/passwd
 			</pre>
 			This reveals that the shell of the user is a custom script and its location as well. On reading the custom script, we find that it is a simple <i>more</i> command calling a file.When the more command terminates, exit 0 is called logging us out.
 			Now, <i>more</i> somewhat like less is a scrolling command which loads a page bit by bit on a small window. Once we have this, we have to find a way to halt at <i>more</i>, so that "exit 0" is not hit. We can do this by minimizing our terminal, and then more will proceed step by step. Once it is done, we can break "more" by using "v".
-
 			<p>On pressing <kbd>v</kbd>, we are in Vim, we can edit a file by typing <kbd>:e</kbd>
 			   Then we can simply read the pass by specifying the file path of the password.
 			</p>
@@ -260,13 +258,11 @@ set shell=/usr/bin/bash
 			<pre>
 git clone &ltURL&gt /tmp/&ltsomedirectory&gt
 			</pre>
-
 		</li>
 		<li>
 			<h3>Bandit28</h3>
 			Similar to above but here, this was comitted previously. Using the command <i>git log</i>(inside the directory cloned) after cloning the directory will reveal us the commit history.
 			Select the tag in which the password was removed from the Readme.md file and use the command <i>git show &lttagname&gt</i>.
-
 		</li>
 		<li>
 			<h3>Bandit29</h3>
@@ -280,12 +276,10 @@ git clone &ltURL&gt /tmp/&ltsomedirectory&gt
 				Bandit30
 			</h3>
 			This involves a tag with a broken commit, which prevents checkout or cloning. This tag can be viewed by using our friend the git-show command as well as before.
-
 		</li>
 		<li>
 			<h3>Bandit31</h3>
 			This is a simple add, commit and push. Add the file, commit it then push it. The verbose message from the remote will contain the password
-
 		</li>
 		<li>
 			<h3>Bandit32</h3>
