@@ -201,7 +201,8 @@ sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${bet
 nc -l -p 44444
 		 	</pre>
 		 	Detach from this screen by pressing <kbd>CTRL</kbd>+<kbd>a</kbd>,<kbd>d</kbd>.
-		 	Then start another screen, and run the executable to connect to the running netcat shell which will return the pass of user <i>bandit20</i> to the ssh connection.
+		 	Then start another screen, and run the executable to connect to the running netcat shell which will return the pass of user <i>bandit20</i> to the ssh connection. The need of the multiplexer here is because, if we create a separate ssh session, the sessions will be sperate terminal wise and hence we cannot see any data or information from the other terminal. 
+		 	It will occur not immediately but after a while that we need to have the terminal to somehow split or multiplex but for the same session. This made me look up terminal multiplexers, and also they had hinted the tool in the challenge as well which pushed me in the right direction.
 		 	<pre>
 		 	./suconnect &ltportnumber&gt 	
 		 	</pre>
@@ -210,6 +211,86 @@ nc -l -p 44444
 		 		screen -r &ltscreenid&gt
 		 	</pre>
 		 	Doing this will give you the output on the screen which is pass of <i>bandit21</i>
+		</li>
+		<li>
+			<h3>Bandit21</h3>
+			Examining the cronjob we know it is run every minute and , simply we need to examine the script being executed and then we know the directory/filename of the stored password. 
+
+		</li>
+		<li>
+			<h3>Bandit22</h3>
+			Simple variation in which the value of the directory is not hardcoded, we need to run the code with the variable as "bandit23" instead of the current user.
+			The file cannot be executed by any user other than cron and bandit23, so when we can do a line by line execute on the bash shell and recover the directory.		
+		</li>
+		<li>
+			<h3>Bandit23</h3>
+			The cron is calling a script (cannot be editied), which is deleting all the scripts in <i>/var/spool</i> after executing them. The trick is to place a script there which fetches the bandit24 password (since cron is of bandit24 it can do so), and place it in <i>"/tmp"</i> in some file. The important thing is that even though cron is executing a script under bandit24, the file created in /tmp will be accessible.
+			The script can be found at <a href="Insert link here">bandit23.sh</a>.
+		</li>
+		<li>
+			<h3>Bandit24</h3>
+			Easy as before, instead of a simple script , we need to bruteforce the pins which ranges from 0000 to 9999. We need to write a simple bash or python script to bruteforce a netcat connection. A further improvement which is desired, is to utilize a single instance of netcat. 
+			Refer to the code for reference which is in bash. <a href="">bandit24.sh</a>
+		</li>
+		<li>
+			<h3>Bandit25</h3>
+			By far the most creative challenge of the lot, the problem is we get logged out as soon as we use the ssh key to login. Unlike one of the previous challenges, this is not a <i>.bashrc</i> or a <i>.bash_profile</i> issue. The issue is the shell of the user which is logging us out. We can see the shell of the user by: <br>
+			<pre>
+cat /etc/passwd
+			</pre>
+			This reveals that the shell of the user is a custom script and its location as well. On reading the custom script, we find that it is a simple <i>more</i> command calling a file.When the more command terminates, exit 0 is called logging us out.
+			Now, <i>more</i> somewhat like less is a scrolling command which loads a page bit by bit on a small window. Once we have this, we have to find a way to halt at <i>more</i>, so that "exit 0" is not hit. We can do this by minimizing our terminal, and then more will proceed step by step. Once it is done, we can break "more" by using "v".
+
+			<p>On pressing <kbd>v</kbd>, we are in Vim, we can edit a file by typing <kbd>:e</kbd>
+			   Then we can simply read the pass by specifying the file path of the password.
+			</p>
+		</li>
+		<li>
+			<h3>Bandit26</h3>
+			This is a continuation of the previous challenge. We can get the password of bandit26, but for getting password of bandit27 , we need to break out of the shell. 
+			If we do a simple,<i><b>:shell</b></i>, then we get back the original shell with <i>more</i>, making us go back to square one. So , to do this we have to set the shell variable to <i>/usr/bin/bash></i>. We can do so by doing by <pre>
+set shell=/usr/bin/bash
+			</pre>
+			Once this is done we can break out of the shell, do a simple <i>ls</i> and get the password of the next user.
+		</li>
+		<li>
+			<h3>Bandit27</h3>
+			The challenges from <i>Bandit27-Bandit31</i>, require the basic know how of how version control systems work, especially git. If you don't know, then there is no point wasting time to solve these challenges. A basic knowhow will atleast enable one to understand what is happening and why.
+			A simple git cloning will reveal the username and password of the next user. The command is as under.
+			<pre>
+git clone &ltURL&gt /tmp/&ltsomedirectory&gt
+			</pre>
+
+		</li>
+		<li>
+			<h3>Bandit28</h3>
+			Similar to above but here, this was comitted previously. Using the command <i>git log</i>(inside the directory cloned) after cloning the directory will reveal us the commit history.
+			Select the tag in which the password was removed from the Readme.md file and use the command <i>git show &lttagname&gt</i>.
+
+		</li>
+		<li>
+			<h3>Bandit29</h3>
+			In this case doing <i>git log</i> will show the commit history but will not show any intersting commits. The hint lies in the <i>Readme.md</i> file itself which says no passwords in production. This hints that we are seeing a different "branch". Doing a <pre>
+			git show-ref
+			</pre>
+			Then we get to know the commits and references across branches. Again using git show as described above we can get the required commit under "dev" branch which is short for development, revealing to us the password.
+		</li>
+		<li>
+			<h3>
+				Bandit30
+			</h3>
+			This involves a tag with a broken commit, which prevents checkout or cloning. This tag can be viewed by using our friend the git-show command as well as before.
+
+		</li>
+		<li>
+			<h3>Bandit31</h3>
+			This is a simple add, commit and push. Add the file, commit it then push it. The verbose message from the remote will contain the password
+
+		</li>
+		<li>
+			<h3>Bandit32</h3>
+			This final challenge is a bit tricky, and there are multiple approaches to solving this which may be far more creative than what I did. Basically we are in a custom shell, which converts everything that we type to upper-case rendering every command useless. We can't do "ls" or "cd". Intuitively, this script or shell must have been called by some parent process or script. Using $0 will call the parent script from within. Since "0" and 
+			"$" are not alphabets, the shell will let us drop back in to the parent "sh" shell.
 		</li>
 	</li>
 	</li>
