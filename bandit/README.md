@@ -106,10 +106,12 @@ base64 -d data.txt
 		<h3>Bandit11</h3>
 		Using sed, which is a beast of a tool. One may use <i>tr</i> tool as well
 		<pre>
+alpha="abcdefghijklmnopqrstuvwxyz"
+beta="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+rot=13
 sed -e "y/${alpha}/${alpha:$rot}${alpha::$rot}/" -e "y/${beta}/${beta:$rot}${beta::$rot}/" data.txt
 		</pre>
-		What sed is basically a stream editor
-		First of all there are 2 stream editor  expressions in place.
+		SED is a stream editor which can process input streams as well as write to streams.  We can use it to implement a simple rot13 cipher on the contents of data.txt to get the secret for the next challenge.The thing to note here is that each lowercase and uppercase character have been rotated by 13 characters. We first use the alpha and beta to match the strings, so they operate in sequence and separate. Next we use them as maps. The character at ith index of alpha goes to i+rot index of alpha. This is done on the contents of the data.txt.
 	</li>
 	<li>
 		<h3>Bandit12</h3>
