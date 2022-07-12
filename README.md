@@ -7,5 +7,7 @@ The list of attempted class of problems are as follows.
 	<li>
 		<h1>Bandit</h1>
 		Recruit level challenges solved for the familiarity and good grasp over the UNIX shell.	
+		<h1>Natas</h1>
+		Web-security based wargames solved till level 30
 	</li>
 </ol>
